@@ -1,0 +1,2 @@
+class UserKanban < ApplicationRecord
+end

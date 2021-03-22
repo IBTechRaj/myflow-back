@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_29_162500) do
+ActiveRecord::Schema.define(version: 2021_02_05_104346) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -88,7 +88,6 @@ ActiveRecord::Schema.define(version: 2020_12_29_162500) do
     t.string "iso_code"
     t.string "continent"
     t.uuid "currency_id"
-    t.string "flag"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.date "fiscal_year_start"
@@ -264,6 +263,15 @@ ActiveRecord::Schema.define(version: 2020_12_29_162500) do
     t.index ["user_id"], name: "index_user_accounts_on_user_id"
   end
 
+  create_table "user_kanbans", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "task_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.uuid "user_id"
+    t.jsonb "task_description"
+    t.jsonb "task_type"
+  end
+
   create_table "user_loans", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "loan_id"
     t.uuid "user_account_id"
@@ -328,8 +336,7 @@ ActiveRecord::Schema.define(version: 2020_12_29_162500) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-  create_table "users_roles", id: false, force: :cascade do |t|
-    t.uuid "user_id"
+  create_table "users_roles", primary_key: "user_id", id: :uuid, default: nil, force: :cascade do |t|
     t.uuid "role_id"
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
   end
