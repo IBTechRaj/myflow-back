@@ -141,7 +141,7 @@ _**Ubuntu**_
   ⚠️**Be sure NOT to commit and push the changes affecting this file though**.
 
 ```yml
-  #  host: <%= ENV['HOST'] || 'flowback_db_1' %>
+#  host: <%= ENV['HOST'] || 'flowback_db_1' %>
 ```
 
 - Docker is already configured. Please DO NOT add anything to the following files when pushing changes:
@@ -157,11 +157,11 @@ _**Ubuntu**_
 
 2. Run this one time only:
 
-  ```terminal
-  your_username@pc:~$ docker-compose build
-  ```
+```terminal
+your_username@pc:~$ docker-compose build
+```
 
-***NOTE: Any change in the Gemfile or the Dockerfile, should be the only times you’ll need to rebuild (Run the above command).***
+**_NOTE: Any change in the Gemfile or the Dockerfile, should be the only times you’ll need to rebuild (Run the above command)._**
 
 - Next run:
 
@@ -299,4 +299,5 @@ curl -XGET -v -H 'Content-Type: application/json' -H 'access-token: lW1c60hYkRwA
 
 [contributor-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
 [contributor-url]: https://github.com/FlowFintech/FlowBack/graphs/contributors
+
 # myflow-back
